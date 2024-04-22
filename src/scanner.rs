@@ -464,4 +464,23 @@ mod tests {
         }
     }
 
+    #[test]
+    fn reserved_keyword_case() {
+        let mut scan = Box::new(Scanner::new("case"));
+        let symbol = scan.get_symbol();
+
+        match symbol {
+            Ok(x) => {
+                match x {
+					Symbols::Case(s, e) => {
+						assert_eq!(s, 0);
+						assert_eq!(e, 4);
+					},
+					_ => assert!(false)
+				}
+            },
+            _ => assert!(false)
+        }
+    }
+
 }
